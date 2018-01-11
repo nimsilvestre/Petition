@@ -1,0 +1,25 @@
+/* NOTA:  USE FLEX-BOX OR GRID! */
+
+* {
+    background-color: grey
+}
+html {
+  font: 18px 'Helvetica Neue', sans-serif;
+}
+
+body {
+  text-align: center;
+}
+
+canvas {
+    display: block;
+    margin-top: 20px;
+    position: relative;
+    border: 1px solid;
+    margin-left: 475px;
+    margin-bottom: 10px
+
+  }
+
+  #canvaposition {
+  }
