@@ -1,25 +1,132 @@
 /* NOTA:  USE FLEX-BOX OR GRID! */
 
 * {
-    background-color: grey
 }
+
 html {
-  font: 18px 'Helvetica Neue', sans-serif;
 }
 
 body {
-  text-align: center;
 }
 
 canvas {
-    display: block;
-    margin-top: 20px;
     position: relative;
     border: 1px solid;
-    margin-left: 475px;
-    margin-bottom: 10px
+    margin-top: 10px;
+    cursor: pointer;
+}
+#quote {
+    padding-left: 10px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    align-content: flex-end;
+    z-index: 99999999;
+    width: 100%;
+    height: 100%;
+}
 
-  }
+blockquote {
+    font-family: Georgia, serif;
+    font-size: 35px;
+    font-style: italic;
+    width: 500px;
+    margin: 0.25em 0;
+    padding: 0.35em 40px;
+    line-height: 1.45;
+    position: relative;
+    color: white;
+}
 
-  #canvaposition {
-  }
+blockquote:before {
+    display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 120px;
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    color: #9C3125
+}
+
+blockquote cite {
+    color: white;
+    font-size: 18px;
+    display: block;
+    margin-top: 5px;
+}
+
+blockquote cite:before {
+    content: "\2014 \2009";
+}
+
+#background {
+    background-repeat: no-repeat;
+    background-image: url(homeless.jpg);
+    filter: brightness(75%) saturate(1.5) contrast(1.1) brightness(1.5);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: relative;
+}
+
+#content {
+    padding-left: 10px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    align-content: flex-end;
+    z-index: 99999999;
+    width: 100%;
+    height: 100%;
+}
+
+h1,
+h2 {
+    font-family: "Fira Sans", sans-serif;
+    color: white;
+}
+
+#navBar {
+    overflow: hidden;
+    position: absolute;
+    /* Set the navbar to fixed position */
+    top: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+    /* Full width */
+    z-index: 5000000000
+}
+
+/* Links inside the navbar */
+
+#navbar a {
+    font-family: "Raleway", sans-serif;
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+#parent {
+    padding-left: 20px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    align-content: flex-end;
+    z-index: -1;
+    width: 50%;
+    height: 100%;
+}
