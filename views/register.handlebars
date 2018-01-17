@@ -1,0 +1,19 @@
+<div id="quote">
+    <blockquote>
+        “The essential is invisible to the eye, and can only be seen with the heart.”
+        <cite>The Little Prince</cite>
+    </blockquote>
+</div>
+<div id="background"></div>
+<div class="regform">
+    <form action="/register" method="post">
+        <input type="hidden" name="_csrf" value={{csrfToken}}>
+        <input type="text" name="firstname" placeholder="First Name"><br>
+        <input type="text" name="lastname" placeholder="Last Name"><br>
+        <input type="text" name="email" placeholder="Email"><br>
+        <input type="password" name="password" placeholder="Password"><br>
+        <button type="submit">Sign up</button>
+    </form><br>
+    Already have an account with us? <a href="/login">Please log in</a>.
+
+</div>

@@ -1,13 +1,8 @@
-<a id="form_hyperlink">
-    <div id="parent">
-        <form id="form1">
-            First name: <input type="text" name="FirstName" value=""> Last name: <input type="text" name="LastName" value=""><br>
-            <input type="hidden" id="sig">
-            <canvas id="sigcanvas" width="350" height="100"></canvas>
-            <div class="divbutton">
-                <button type="submit">Submit</button>
-                <button id='clearButton' class="buttons" type="button">Clear</button>
-        </form>
-        </div>
-    </div>
-</a>
+    <h1></h1>
+    <h2></h2> Please sign here:<br>
+    <canvas width="600" height="150" id="sigCanvas"></canvas><br>
+    <form action="/submit-sig" method="post">
+        <input type="hidden" name="_csrf" value= {{csrfToken}}>
+        <input type="hidden" name="signature"><br><br>
+        <button type="submit">Submit</button>
+    </form><br>

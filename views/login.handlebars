@@ -1,5 +1,8 @@
-    adicionar login form com:
-        firstname
-        lastname
-        email
-        password -make the hash of the password with bcryptjs
+
+<form action="/login" method="post">
+    <input type="hidden" name="_csrf" value={{csrfToken}}>
+    <input type="text" name="email" placeholder="Email"><br>
+    <input type="password" name="password" placeholder="Password"><br>
+    <button type="submit">Login</button>
+</form><br>
+<a href="/register">Please register to sign the petition</a>.

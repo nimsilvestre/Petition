@@ -1,23 +1,58 @@
-var spicedPg = require('spiced-pg');
+const pg = require('pg');
 
-const {
-  dbUser,
-  dbPass
-} = require('./secrets');
+const dbs = {};
 
-var db = spicedPg(`postgres:${dbUser}:${dbPass}@localhost:5432/cities`);
+module.exports = function(url) {
+    if (dbs[url]) {
+        return dbs[url];
+    }
 
-function getSignature(signature) {
-  return db
-    .query( //SQL injection - if using targeting it would make it vunerable!
-      `SELECT first, last FROM signatures
-            WHERE first = $1 AND last = $2`, [signature]
+    const dbUrl = require('url').parse(url);
 
-    )
-    .then(function(results) {
-      console.log(results.rows[0]);
-    })
-    .catch(function(err) {
-      console.log(err);
+    const dbUser = dbUrl.auth.split(':');
+
+    const dbConfig = {
+        user: dbUser[0],
+        database: dbUrl.pathname.slice(1),
+        password: dbUser[1],
+        host: dbUrl.hostname,
+        port: 5432,
+        max: 10,
+        idleTimeoutMillis: 30000
+    };
+
+    const pool = new pg.Pool(dbConfig);
+
+    pool.on('error', function(err) {
+        console.log(err);
     });
-}
+
+    return dbs[url] = {
+        query: query
+    };
+
+    function query(query, params, callback) {
+        callback = typeof params == 'function' ? params : callback;
+        params = Array.isArray(params) ? params : [];
+
+        return new Promise(function(resolve, reject) {
+            pool.connect(function(err, client, done) {
+                if (err) {
+                    reject(err);
+                    callback && callback(err);
+                } else {
+                    client.query(query, params, function(err, data) {
+                        if (err) {
+                            reject(err);
+                            callback && callback(err);
+                        } else {
+                            resolve(data);
+                            callback && callback(null, data);
+                        }
+                        done();
+                    });
+                }
+            });
+        });
+    }
+};

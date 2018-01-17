@@ -130,3 +130,15 @@ h2 {
     width: 50%;
     height: 100%;
 }
+/*Register Form*/
+
+.regform {
+    overflow: hidden;
+    position: absolute;
+    /* Set the navbar to fixed position */
+    top: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+    /* Full width */
+    z-index: 5000000000
+}

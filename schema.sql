@@ -1,29 +1,30 @@
-DROP TABLE IF EXIST users;
-DROP TABLE IF EXIST users_profile;
-DROP TABLE IF EXIST signatures;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users_profiles;
+DROP TABLE IF EXISTS signatures;
 
-
-CREATE TABLE signatures(
+CREATE TABLE users(
     id SERIAL PRIMARY KEY,
-    first VARCHAR(300) not null,
-    last VARCHAR(300) not null,
-    signarute TEX NOT NULL
+    firstname VARCHAR(300) not null,
+    lastname VARCHAR(300) not null,
     email VARCHAR(300) not null unique,
-    hashed_pass VARCHAR(300) not null
+    hashed_password VARCHAR(300) not null,
+    created TIMESTAMP
+);
+
+CREATE TABLE users_profiles(
+    id SERIAL PRIMARY KEY,
+    user_id VARCHAR(300) not null,
+    city VARCHAR(300),
+    country VARCHAR(300),
+    age INTEGER,
+    url VARCHAR(300),
     created TIMESTAMP
 );
 
 
-
-var q = `INSERT INTO signatures (first, last, signatures)
-VALUES($1, $2, $3) RETURNING id`
-
-db.query(q, [first, last, sig]).then(result) => {
-    const sigId = result.row[0].id;
-});
-
-app.post('/petition', function(req, res) {
-    sign(req.body.first, req.body.last, req.body.sig).then(function(signId){
-    req.session.sigId  = sigId;
-    })
-})
+CREATE TABLE signatures(
+    id SERIAL PRIMARY KEY,
+    user_id VARCHAR(300) not null,
+    signature TEXT NOT NULL,
+    created TIMESTAMP
+);
