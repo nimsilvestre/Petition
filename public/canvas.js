@@ -1,10 +1,11 @@
 (function() {
-    var canvas = document.getElementById("sigcanvas");
+    var canvas = document.getElementById("sigCanvas");
     var ctx = canvas.getContext("2d");
     var signed = false;
 
     var mouseDown = canvas.addEventListener("mousedown", pointerDown, false);
     canvas.addEventListener("mouseup", pointerUp, false);
+    ctx.strokeStyle = "#fff";
 
     function pointerDown(evt) {
         ctx.beginPath();
@@ -15,7 +16,7 @@
     function pointerUp(evt) {
         canvas.removeEventListener("mousemove", paint);
         paint(evt);
-        document.getElementById("sig").value = canvas.toDataURL();
+        document.getElementById("sigCanvas").value = canvas.toDataURL();
     }
 
     function paint(evt) {

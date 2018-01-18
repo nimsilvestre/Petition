@@ -1,5 +1,3 @@
-"use strict";
-
 const express = require("express");
 const app = express();
 const hb = require("express-handlebars");
@@ -22,7 +20,11 @@ app.use(
 
 //BODY PARSER
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+    bodyParser.urlencoded({
+        extended: false
+    })
+);
 
 //STATIC PAGE
 app.use("/public", express.static(__dirname + "/public"));
@@ -53,12 +55,20 @@ app.get("/register", (req, res) => {
     });
 });
 
+app.get("/register", (req, res) => {
+    res.render("register", {
+        layout: "main",
+        csrfToken: req.csrfToken()
+    });
+});
+
 app.post("/register", (req, res) => {
     var { firstname, lastname, email, password } = req.body;
 
     if (!firstname || !lastname || !email || !password) {
         res.render("register", {
             layout: "main",
+            error: "You need complete the entire form to proceed.",
             csrfToken: req.csrfToken()
         });
     } else {
@@ -106,8 +116,8 @@ app.post("/register", (req, res) => {
             });
     }
 });
-
 //MORE INFOS PAGE
+
 app.get("/more-info", (req, res, next) => {
     res.render("more-info", {
         layout: "main",
@@ -242,6 +252,7 @@ app.get("/petition", (req, res) => {
 });
 
 //SUBMIT SIGNATURE PAGE
+
 app.post("/submit-sig", (req, res, next) => {
     var { firstname, lastname, signature } = req.body;
     var userId = req.session.user.id;
@@ -258,7 +269,7 @@ app.post("/submit-sig", (req, res, next) => {
                 res.redirect("/thank-you");
             })
             .catch(err => {
-                console.log("err with signing petition || index.js", err);
+                console.log("err with signing petition", err);
             });
     }
 });

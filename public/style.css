@@ -1,20 +1,21 @@
 /* NOTA:  USE FLEX-BOX OR GRID! */
 
-* {
-}
+* {}
 
-html {
-}
+html {}
 
 body {
+    margin: 10px;
+    padding: 0;
 }
 
 canvas {
     position: relative;
-    border: 1px solid;
+    border: 1px solid white;
     margin-top: 10px;
     cursor: pointer;
 }
+
 #quote {
     padding-left: 10px;
     position: absolute;
@@ -61,8 +62,9 @@ blockquote cite {
 blockquote cite:before {
     content: "\2014 \2009";
 }
+ /*REGISTER PAGE*/
 
-#background {
+#background1 {
     background-repeat: no-repeat;
     background-image: url(homeless.jpg);
     filter: brightness(75%) saturate(1.5) contrast(1.1) brightness(1.5);
@@ -73,6 +75,207 @@ blockquote cite:before {
     height: 100%;
     z-index: -1;
     position: relative;
+}
+
+/*LOGIN PAGE*/
+
+#background2 {
+    background-repeat: no-repeat;
+    background-image: url(homeless6.jpg);
+    filter: brightness(75%) saturate(1.5) contrast(1.1) brightness(1.5);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: relative;
+}
+
+/*MORE INFOS PAGE*/
+
+#background3 {
+    background-repeat: no-repeat;
+    background-image: url(homeless4.jpg);
+    filter: brightness(75%) saturate(1.5) contrast(1.1) brightness(1.5);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: relative;
+}
+
+.forminfo {
+    font-family: sans-serif;
+    width: 320px;
+    height: 427px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 37px 30px;
+    z-index: 5000000000;
+}
+
+.forminfo h1 {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.forminfo p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.forminfo input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.forminfo input [type="text"], input["password"] {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.forminfo input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #1c8adb;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.forminfo input[type="submit"]:hover {
+    cursor: pointer;
+    background #39dc79;
+    color: #000;
+}
+
+.forminfo a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+}
+
+.forminfo a {
+    color: #39dc79;
+}
+
+info {
+    overflow: hidden;
+    position: absolute;
+    /* Set the navbar to fixed position */
+    top: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+    /* Full width */
+    z-index: 5000000000
+}
+
+
+
+/*SIGN PETITION PAGE*/
+#background4 {
+    background-repeat: no-repeat;
+    background-image: url(homeless3.jpg);
+    filter: brightness(75%) saturate(1.5) contrast(1.1) brightness(1.6);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: relative;
+}
+
+.formpetish {
+    font-family: sans-serif;
+    width: 650px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-10%, -50%);
+    box-sizing: border-box;
+    padding: 10px 25px;
+}
+
+.h1petish {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.formpetish p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.formpetish input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+.formpetish input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #1c8adb;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.formpetish input[type="submit"]:hover {
+    cursor: pointer;
+    background #39dc79;
+    color: #000;
+}
+/*THANK YOU PAGE*/
+
+#background5 {
+    background-repeat: no-repeat;
+    background-image: url(homeless2.jpg);
+    filter: brightness(75%) saturate(1.5) contrast(1.1) brightness(1.6);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: relative;
+}
+
+.thankyou {
+    font-family: sans-serif;
+    width: 650px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 10px 25px;
 }
 
 #content {
@@ -88,8 +291,7 @@ blockquote cite:before {
     height: 100%;
 }
 
-h1,
-h2 {
+h1, h2 {
     font-family: "Fira Sans", sans-serif;
     color: white;
 }
@@ -130,7 +332,77 @@ h2 {
     width: 50%;
     height: 100%;
 }
+
 /*Register Form*/
+
+.formregister {
+    font-family: sans-serif;
+    width: 320px;
+    height: 427px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 37px 30px;
+    z-index: 5000000000;
+}
+
+.h1register {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.formregister p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.formregister input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.formregister input [type="text"], input["password"] {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.formregister input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #1c8adb;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.formregister input[type="submit"]:hover {
+    cursor: pointer;
+    background #39dc79;
+    color: #000;
+}
+
+.formregister a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+}
+
+.formregister a {
+    color: #39dc79;
+}
 
 .regform {
     overflow: hidden;
@@ -141,4 +413,74 @@ h2 {
     width: 100%;
     /* Full width */
     z-index: 5000000000
+}
+
+/*Login Form*/
+
+.formlogin {
+    font-family: sans-serif;
+    width: 320px;
+    height: 420px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+}
+
+.h1login {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.formlogin p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+.formlogin input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.formlogin input [type="text"], input["password"] {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.formlogin input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #1c8adb;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.formlogin input[type="submit"]:hover {
+    cursor: pointer;
+    background #39dc79;
+    color: #000;
+}
+
+.formlogin a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+}
+
+.formlogin a {
+    color: #39dc79;
 }

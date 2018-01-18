@@ -1,8 +1,12 @@
-    <h1></h1>
-    <h2></h2> Please sign here:<br>
-    <canvas width="600" height="150" id="sigCanvas"></canvas><br>
-    <form action="/submit-sig" method="post">
-        <input type="hidden" name="_csrf" value= {{csrfToken}}>
-        <input type="hidden" name="signature"><br><br>
-        <button type="submit">Submit</button>
-    </form><br>
+<div id="background4"></div>
+    <div class="formpetish">
+        <h1>Sign the Petition</h1>
+        <canvas width="600" height="150" id="sigCanvas"></canvas><br>
+        <form action="/submit-sig" method="post">
+            <input type="hidden" name="_csrf" value= {{csrfToken}}>
+            <p>Draw your signature here</p>
+            <input type="hidden" name="signature"><br><br>
+            <button type="submit">Submit</button>
+            <button type="clear" id="clearButton">Clear</button>
+        </form>
+    </div>

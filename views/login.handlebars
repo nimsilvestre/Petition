@@ -1,8 +1,13 @@
-
-<form action="/login" method="post">
-    <input type="hidden" name="_csrf" value={{csrfToken}}>
-    <input type="text" name="email" placeholder="Email"><br>
-    <input type="password" name="password" placeholder="Password"><br>
-    <button type="submit">Login</button>
-</form><br>
-<a href="/register">Please register to sign the petition</a>.
+<div id="background2"></div>
+<div class="formlogin">
+    <h1 class="h1login">Login Here</h1>
+    <form action="/login" method="post">
+        <input type="hidden" name="_csrf" value= {{csrfToken}}>
+        <p>Email</p>
+        <input type="text" name="email" placeholder="Email"><br>
+        <p>Password</p>
+        <input type="password" name="password" placeholder="Password"><br>
+        <button type="submit">Login</button>
+    </form><br>
+    <a href="/register">Please register to sign the petition.</a>
+</div>
