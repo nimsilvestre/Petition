@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
 const cookieSession = require("cookie-session");
-const session = require("express-session");
+//const session = require("express-session");
 const csurf = require("csurf");
 const db = require("./db");
 
@@ -55,15 +55,8 @@ app.get("/register", (req, res) => {
     });
 });
 
-app.get("/register", (req, res) => {
-    res.render("register", {
-        layout: "main",
-        csrfToken: req.csrfToken()
-    });
-});
-
 app.post("/register", (req, res) => {
-    var { firstname, lastname, email, password } = req.body;
+    const { firstname, lastname, email, password } = req.body;
 
     if (!firstname || !lastname || !email || !password) {
         res.render("register", {
@@ -159,8 +152,8 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-    var email = req.body.email;
-    var password = req.body.password;
+    const email = req.body.email;
+    const password = req.body.password;
 
     if (!email || !password) {
         res.render("login", {
@@ -228,14 +221,14 @@ app.post("/login", (req, res) => {
 
 //PETITION PAGE
 app.get("/petition", (req, res) => {
-    const firstname = req.session.user.firstname;
-    const lastname = req.session.user.lastname;
-
     if (!req.session.user) {
         res.redirect("/register");
     } else if (req.session.signed) {
         res.redirect("/thank-you");
     } else {
+        const firstname = req.session.user.firstname;
+        const lastname = req.session.user.lastname;
+
         db
             .getName(firstname, lastname)
             .then(results => {
@@ -254,8 +247,8 @@ app.get("/petition", (req, res) => {
 //SUBMIT SIGNATURE PAGE
 
 app.post("/submit-sig", (req, res, next) => {
-    var { firstname, lastname, signature } = req.body;
-    var userId = req.session.user.id;
+    const { firstname, lastname, signature } = req.body;
+    const userId = req.session.user.id;
 
     if (req.session.signed) {
         res.redirect("/thank-you");
@@ -276,7 +269,7 @@ app.post("/submit-sig", (req, res, next) => {
 
 //THANK YOU PAGE
 app.get("/thank-you", (req, res) => {
-    var userId = req.session.user.id;
+    const userId = req.session.user.id;
     db
         .getSigImage(userId)
         .then(function(results) {
@@ -316,7 +309,7 @@ app.get("/signatures", (req, res, next) => {
 
 //SIGNATURES BY CITY
 app.get("/signatures/:city", (req, res) => {
-    var city = req.params.city;
+    const city = req.params.city;
     db
         .getSigsByCity(city)
         .then(results => {

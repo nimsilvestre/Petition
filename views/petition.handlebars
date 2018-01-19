@@ -3,10 +3,10 @@
         <h1>Sign the Petition</h1>
         <canvas width="600" height="150" id="sigCanvas"></canvas><br>
         <form action="/submit-sig" method="post">
-            <input type="hidden" name="_csrf" value= {{csrfToken}}>
+            <input id="canvas"type="hidden" name="_csrf" value= {{csrfToken}}>
             <p>Draw your signature here</p>
-            <input type="hidden" name="signature"><br><br>
+            <input type="hidden" class="signatures" name="signature"><br><br>
             <button type="submit">Submit</button>
-            <button type="clear" id="clearButton">Clear</button>
+            <button type="button" id="clearButton">Clear</button>
         </form>
     </div>

@@ -1,9 +1,7 @@
 const spicedPg = require("spiced-pg");
 const bcrypt = require("bcryptjs");
 const { dbUser, dbPass } = require("./secret");
-const db = spicedPg(
-    process.env.DATABASE_URL ||
-        `postgres:${dbUser}:${dbPass}@localhost:5432/petition`
+const db = spicedPg(process.env.DATABASE_URL || `postgres:${dbUser}:${dbPass}@localhost:5432/petition`
 );
 
 //MODULES
@@ -117,11 +115,10 @@ RETURNING id`;
 
 module.exports.getSigImage = function(userId) {
     const query = `
-SELECT viewsignatures
-FROM users
-JOIN users_profiles
-ON users.id = $1 AND users_profiles.users_id = $1`;
-    const params = [];
+SELECT signature
+FROM signatures
+WHERE user_id = $1`;
+    const params = [userId];
     return db.query(query, params);
 };
 
