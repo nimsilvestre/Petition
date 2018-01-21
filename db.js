@@ -1,8 +1,21 @@
 const spicedPg = require("spiced-pg");
 const bcrypt = require("bcryptjs");
 const { dbUser, dbPass } = require("./secret");
-const db = spicedPg(process.env.DATABASE_URL || `postgres:${dbUser}:${dbPass}@localhost:5432/petition`
+const db = spicedPg(
+    process.env.DATABASE_URL ||
+        `postgres:${dbUser}:${dbPass}@localhost:5432/petition`
 );
+
+/*
+if (process.env.DATABASE_URL) {
+    console.log('process env');
+    db = spicedPg(process.env.DATABASE_URL);
+} else {
+    console.log('localhost');
+    const secrets = require('./secrets.json');
+    db = spicedPg(`postgres:${secrets.user}:${secrets.pass}@localhost:5432/petition`);
+}
+*/
 
 //MODULES
 module.exports.addMoreInfo = function(age, city, country, url, userId) {
@@ -124,30 +137,40 @@ WHERE user_id = $1`;
 
 module.exports.sigList = function() {
     const query = `
-SELECT
-users.firstname,
-users.lastname,
-users_profiles.city,
-users_profiles.country
-FROM users
-JOIN users_profiles
-ON users.id = users_profiles.user_id`;
+    SELECT users.firstname
+    AS user_first, users.lastname
+    AS user_last,
+    users_profiles.age
+    AS profile_age, users_profiles.city
+    AS profile_city
+    FROM signatures
+    LEFT JOIN users
+    ON user_id = signatures.user_id
+    LEFT JOIN users_profiles
+    ON users.id = users_profiles.user_id`;
     const params = [];
     return db.query(query);
 };
 
 module.exports.getSigsByCity = function(city) {
     const query = `
-SELECT
-users.firstname,
-users.lastname,
-users_profiles.city,
-users_profiles.country,
-users_profiles.url
-FROM users
-JOIN users_profiles
-ON users.id = users_profiles.users_id
-WHERE users_profiles.city = $1`;
+          SELECT users.firstname, users.lastname, users_profiles.city, users_profiles.country, users_profiles.url
+          FROM users
+          INNER JOIN user_profiles
+          ON users.id = users_profiles.user_id
+          WHERE users_profiles.city = $1`;
     const params = [city];
     return db.query(query, params);
+    // .then((results) => {
+    // return results.rows
+    // })
 };
+
+
+    module.exports.deleteSig = function(userId) {
+        const query = `
+        DELETE FROM signatures
+        WHERE signatures.user_id = $1`
+        const params = [ userId ]
+        return db.query(query, params)
+    }

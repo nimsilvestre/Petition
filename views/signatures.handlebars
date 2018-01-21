@@ -1,1 +1,7 @@
-SIGNATURES HANDLEBARS WITH LIST OF USERS WHO SIGNED!!
+<h1></h1>
+<h2></h2>
+<div class="signees">
+    {{# signers}}
+    {{user_first}} {{user_last}}, <a href="/signatures/{{profile_city}}">{{profile_city}}</a> {{country}}<br>
+    {{/ signers}}
+</div>

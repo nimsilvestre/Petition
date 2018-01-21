@@ -128,8 +128,7 @@ app.post("/more-info", (req, res, next) => {
     if (req.session.signed) {
         res.redirect("/thank-you");
         next();
-    } else if (!age || !city || !country || !url) {
-        //IF THEY DON'T FILL OUT EVERYTHING... THERE'S AN ERROR
+    } else if (age || city || country || url) {  //I chaged this last time!
         next();
     } else {
         db
@@ -291,19 +290,20 @@ app.get("/thank-you", (req, res) => {
 });
 
 //SIGNATURES PAGE
+
+
 app.get("/signatures", (req, res, next) => {
-    db
-        .sigList()
+    db.sigList()
         .then(results => {
             res.render("signatures", {
                 layout: "main",
-                signees: results.rows,
+                signers: results.rows,
                 csrfToken: req.csrfToken()
             });
-            // console.log('RESULTS.ROWS', results.rows)
+            console.log('RESULTS.ROWS', results.rows)
         })
         .catch(err => {
-            console.log("app.get signees error", err);
+            console.log("app.get signers error", err);
         });
 });
 
@@ -324,6 +324,19 @@ app.get("/signatures/:city", (req, res) => {
         .catch(err => {
             console.log("signatures/:city error", err);
         });
+});
+
+//delete signature
+
+app.get('/delete-sig', (req, res) => {
+    var userId = req.session.user.id;
+    db.deleteSig(userId).then(() => {
+        req.session.signed = null;
+        res.redirect('/petition');
+    }).catch((err) => {
+        console.log('ERR FOR DELETE SIG', err)
+    })
+
 });
 
 //SERVER
