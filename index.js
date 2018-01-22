@@ -36,6 +36,10 @@ app.set("view engine", "handlebars");
 //CSURF
 app.use(csurf());
 
+
+
+
+
 //INDEX PAGE
 app.get("/", (req, res) => {
     if (req.session.signed) {
@@ -128,7 +132,7 @@ app.post("/more-info", (req, res, next) => {
     if (req.session.signed) {
         res.redirect("/thank-you");
         next();
-    } else if (age || city || country || url) {  //I chaged this last time!
+    } else if (!age || !city || !country || !url) {  //I chaged this last time!
         next();
     } else {
         db
@@ -326,18 +330,7 @@ app.get("/signatures/:city", (req, res) => {
         });
 });
 
-//delete signature
 
-app.get('/delete-sig', (req, res) => {
-    var userId = req.session.user.id;
-    db.deleteSig(userId).then(() => {
-        req.session.signed = null;
-        res.redirect('/petition');
-    }).catch((err) => {
-        console.log('ERR FOR DELETE SIG', err)
-    })
-
-});
 
 //SERVER
 app.listen(process.env.PORT || 8080, () =>

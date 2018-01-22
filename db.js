@@ -90,7 +90,7 @@ module.exports.checkHashPass = function(email) {
 
 module.exports.checkPassword = function(password, hashedPassword) {
     //take hashed from db
-    return new Promise((resolve, reect) => {
+    return new Promise((resolve, reject) => {
         bcrypt.compare(password, hashedPassword, (err, doesMatch) => {
             if (err) {
                 console.log("err with bcrypt cheking password", err);
@@ -156,7 +156,7 @@ module.exports.getSigsByCity = function(city) {
     const query = `
           SELECT users.firstname, users.lastname, users_profiles.city, users_profiles.country, users_profiles.url
           FROM users
-          INNER JOIN user_profiles
+          INNER JOIN users_profiles
           ON users.id = users_profiles.user_id
           WHERE users_profiles.city = $1`;
     const params = [city];
@@ -165,12 +165,3 @@ module.exports.getSigsByCity = function(city) {
     // return results.rows
     // })
 };
-
-
-    module.exports.deleteSig = function(userId) {
-        const query = `
-        DELETE FROM signatures
-        WHERE signatures.user_id = $1`
-        const params = [ userId ]
-        return db.query(query, params)
-    }
