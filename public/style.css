@@ -66,10 +66,10 @@ blockquote cite:before {
 
 /*CITIES PAGE*/
 
-#background6 {
+#background7 {
     background-repeat: no-repeat;
-    background-image: url(homeless7.jpg);
-    filter: brightness(75%) saturate(1.5) contrast(1.1) brightness(1.5);
+    background-image: url(homeless9.jpg);
+    filter: brightness(75%) saturate(1.5) contrast(1) brightness(1.5);
     background-position: center;
     background-size: cover;
     position: relative;
