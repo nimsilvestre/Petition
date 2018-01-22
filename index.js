@@ -214,8 +214,7 @@ app.post("/login", (req, res) => {
                 console.log("err with checkEmail", err);
                 res.render("login", {
                     layout: "main",
-                    error:
-                        "Something went wrong with your email. Please try again.",
+                    error: "Something went wrong with your email. Please try again.",
                     csrfToken: req.csrfToken()
                 });
             });
@@ -294,7 +293,6 @@ app.get("/thank-you", (req, res) => {
 });
 
 //SIGNATURES PAGE
-
 
 app.get("/signatures", (req, res, next) => {
     db.sigList()
